@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {ScoreboardState} from './store/reducers/scoreboard.reducer';
@@ -11,7 +11,7 @@ import {NgForm, NgModel} from '@angular/forms';
   selector: 'app-scoreboard',
   templateUrl: './scoreboard.component.html'
 })
-export class ScoreboardComponent {
+export class ScoreboardComponent implements OnDestroy {
   homeValue: number;
   awayValue: number;
   subscription: Subscription;
@@ -38,6 +38,15 @@ export class ScoreboardComponent {
 
   setScore(event: Event, home: NgModel, away: NgModel): void {
     event.preventDefault();
-    this.store.dispatch(setScores({game: {home: home.value, away: away.value}}));
+    this.store.dispatch(setScores({
+      game: {
+        home: home.value,
+        away: away.value
+      }
+    }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
