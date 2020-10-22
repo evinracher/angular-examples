@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {increment, decrement, reset} from './store/actions/counter.actions';
+import {AppState, selectCountState} from './store/selectors/counter.selector';
 
 @Component({
   selector: 'app-my-counter',
@@ -9,10 +10,15 @@ import {increment, decrement, reset} from './store/actions/counter.actions';
 })
 export class MyCounterComponent {
   count$: Observable<number>;
+  count: number;
 
-  constructor(private store: Store<{ count: number }>) {
+  constructor(private store: Store<AppState>) {
     // DONE: This stream will connect to the current store `count` state
-    this.count$ = store.select('count');
+    this.store.pipe(select(selectCountState))
+      .subscribe(count => {
+          this.count = count;
+        }
+      );
   }
 
   increment(): void {
