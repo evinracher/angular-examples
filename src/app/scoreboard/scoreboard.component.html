@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h3>Home</h3>
+      <p>{{homeValue}}</p>
+    </div>
+    <div class="col-sm">
+      <h3>Away</h3>
+      <p>{{awayValue}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="btn btn-success" (click)="homeScore()">Home score</button>
+    </div>
+    <div class="col-sm-6">
+      <button class="btn btn-danger" (click)="awayScore()">Away score</button>
+    </div>
+  </div>
+
+  <div class="row my-4">
+    <button class="btn btn-warning mx-auto" (click)="resetScores()">Reset Scores</button>
+  </div>
+
+  <form class="mt-4" (ngSubmit)="setScore($event, home, away)">
+    <div class="row">
+      <h4>Set scores:</h4>
+    </div>
+    <div class="form-group row">
+      <label class="col-5 col-form-label" for="home">Home</label>
+      <div class="col-7">
+        <input
+          class="form-control"
+          ngModel
+          name="home"
+          #home="ngModel"
+          id="home"
+          type="number">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-5 col-form-label" for="away">Away</label>
+      <div class="col-7">
+        <input
+          class="form-control"
+          ngModel
+          name="away"
+          #away="ngModel"
+          id="away"
+          type="number">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Change</button>
+  </form>
+
+</div>
