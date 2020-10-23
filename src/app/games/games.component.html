@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Home</th>
+    <th scope="col">Away</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let game of games">
+    <td>{{game.id}}</td>
+    <td>{{game.home}}</td>
+    <td>{{game.away}}</td>
+  </tr>
+  </tbody>
+</table>
+

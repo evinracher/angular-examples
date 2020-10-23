@@ -3,9 +3,9 @@ import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {ScoreboardState} from './store/reducers/scoreboard.reducer';
 import {selectScore} from './store/selector/scoreboard.selectors';
-import {Game} from './game';
 import {awayScore, homeScore, resetScore, setScores} from './store/actions/scoreboard.actions';
-import {NgForm, NgModel} from '@angular/forms';
+import {NgModel} from '@angular/forms';
+import {addGame} from '../games/store/actions/games.actions';
 
 @Component({
   selector: 'app-scoreboard',
@@ -39,9 +39,21 @@ export class ScoreboardComponent implements OnDestroy {
   setScore(event: Event, home: NgModel, away: NgModel): void {
     event.preventDefault();
     this.store.dispatch(setScores({
-      game: {
+      score: {
         home: home.value,
         away: away.value
+      }
+    }));
+  }
+
+  saveGame(): void {
+    this.store.dispatch(addGame({
+      payload: {
+        game: {
+          id: Math.floor((Math.random() * 100) + 1),
+          home: this.homeValue,
+          away: this.awayValue
+        }
       }
     }));
   }

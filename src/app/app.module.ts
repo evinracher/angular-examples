@@ -14,18 +14,20 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ScoreboardModule} from './scoreboard/scoreboard.module';
 import {ScoreboardComponent} from './scoreboard/scoreboard.component';
 import {FormsModule} from '@angular/forms';
+import {GamesModule} from './games/games.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyCounterComponent,
     HomeComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ScoreboardModule,
+    GamesModule,
     StoreModule.forRoot({count: counterReducer}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     NgbModule,
